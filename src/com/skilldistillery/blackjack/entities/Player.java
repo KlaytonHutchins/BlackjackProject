@@ -2,30 +2,30 @@ package com.skilldistillery.blackjack.entities;
 
 public class Player {
 	
-	private Hand playerHand;
+	protected Hand myHand;
 	
 	public Player() {
-		playerHand = new BlackjackHand();
+		myHand = new BlackjackHand();
 	}
 	
-	public void addCardToPlayerHand(Card card) {
-		playerHand.addCard(card);
+	public void addCardToMyHand(Card card) {
+		myHand.addCard(card);
 	}
 	
 	public String displayCard(int index) {
-		return playerHand.displayCard(index);
+		return myHand.displayCard(index);
 	}
 	
 	public int getHandValue() {
-		return playerHand.getHandValue();
+		return myHand.getHandValue();
 	}
 	
 	public boolean isBust() {
-		return playerHand.isBust();
+		return myHand.isBust();
 	}
 	
 	public boolean isBlackjack() {
-		return (playerHand.handSize() == 2 && getHandValue() == 21);
+		return (myHand.handSize() == 2 && getHandValue() == 21);
 	}
 	
 	public boolean isTwentyOne() {
@@ -33,7 +33,7 @@ public class Player {
 	}
 	
 	public int handSize() {
-		return playerHand.handSize();
+		return myHand.handSize();
 	}
 	
 }

@@ -46,10 +46,10 @@ public class BlackjackApp {
 	}
 
 	private void dealInitialCards() {
-		player.addCardToPlayerHand(dealer.dealCard());
-		dealer.addCardToDealerHand(dealer.dealCard());
-		player.addCardToPlayerHand(dealer.dealCard());
-		dealer.addCardToDealerHand(dealer.dealCard());
+		player.addCardToMyHand(dealer.dealCard());
+		dealer.addCardToMyHand(dealer.dealCard());
+		player.addCardToMyHand(dealer.dealCard());
+		dealer.addCardToMyHand(dealer.dealCard());
 	}
 	
 	private void displayCards() {
@@ -75,18 +75,18 @@ public class BlackjackApp {
 
 	public void playerHitOrStand() {
 		System.out.print("Would you like to HIT or STAND? ");
-		String hitOrStand = sc.next();
+		String hitOrStand = sc.next().toUpperCase();
 //		sc.nextLine();
 		while (!hitOrStand.equals("HIT") && !hitOrStand.equals("STAND")) {
 			System.err.println("Invalid entry. Please say \"HIT\" or \"STAND\"");
 			hitOrStand = sc.nextLine();
-//			sc.nextLine();
+			sc.nextLine();
 		}
 		if (hitOrStand.equals("STAND")) {
 			stillHitting = false;
 			return;
 		} else if (hitOrStand.equals("HIT")){
-			player.addCardToPlayerHand(dealer.dealCard());
+			player.addCardToMyHand(dealer.dealCard());
 			if (player.isBust() || player.isTwentyOne()) {
 				isGameOver = true;
 			} else {
@@ -98,7 +98,7 @@ public class BlackjackApp {
 	public void dealerHitOrStand() {
 		if (dealer.getHandValue() < 17) {
 			System.out.println("Dealer drawing card..");
-			dealer.addCardToDealerHand(dealer.dealCard());
+			dealer.addCardToMyHand(dealer.dealCard());
 		} else {
 			stillHitting = false;
 			isGameOver = true;
